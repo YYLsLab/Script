@@ -137,7 +137,7 @@ git merge --abort
 git add README.md
 
 # 暂存某个目录下所有文件
-git add pipeline/
+git add xgh1/
 
 # 暂存所有修改过的文件（不包括新文件）
 git add -u
@@ -283,12 +283,12 @@ Thumbs.db
 
 | 目录 | 说明 |
 |------|------|
-| `hpc_workflow/` | HPC 集群自动化缺陷计算流程（Slurm 作业脚本） |
-| `formation_energy/` | 独立形成能绘制脚本（包含使用说明 PDF） |
-| `standalone/` | **可独立使用的通用脚本（推荐）**，通过 `-i`/`-o` 显式指定输入输出路径，适配任意目录结构 |
-| `pipeline/` | 项目内工作流脚本集，依赖固定项目目录结构 |
+| `zrq/` | HPC 集群自动化缺陷计算流程（Slurm 作业脚本） |
+| `zy/` | 独立形成能绘制脚本（包含使用说明 PDF） |
+| `xgh2/` | **可独立使用的通用脚本（推荐）**，通过 `-i`/`-o` 显式指定输入输出路径，适配任意目录结构 |
+| `xgh1/` | 项目内工作流脚本集，依赖固定项目目录结构 |
 
-> 详细使用说明见 [`standalone/README.md`](standalone/README.md)
+> 详细使用说明见 [`xgh2/README.md`](xgh2/README.md)
 
 ---
 
@@ -334,14 +334,14 @@ project/
 
 ```bash
 # 生成 defect.input（缺陷位置文件）
-python standalone/generate_defect_input.py \
+python xgh2/generate_defect_input.py \
     -ibulk bulk/scf \
     -iq0 q0/scf \
     -iq1 q1/scf \
     -o defect_inputs/
 
 # 生成 occ.input（占据数分析）
-python standalone/generate_occ.py \
+python xgh2/generate_occ.py \
     -i q0/scf \
     -o occ.input
 ```
@@ -351,7 +351,7 @@ python standalone/generate_occ.py \
 在 HPC 上依次运行 `1_get_rho.sh` → `2_coulomb_integral.sh` → `3_get_results.sh`，或使用独立版脚本：
 
 ```bash
-python standalone/correction.py collect \
+python xgh2/correction.py collect \
     -ibulk bulk/scf \
     -iq0 q0/scf \
     -iq1 q1/scf \
@@ -362,7 +362,7 @@ python standalone/correction.py collect \
 ### 4. 计算化学势允许范围（可选）
 
 ```bash
-python standalone/calculate_chemical_potential_bounds.py \
+python xgh2/calculate_chemical_potential_bounds.py \
     -i chemical \
     -o result/chemical_potential_bounds.yaml \
     --target SiO2
@@ -371,7 +371,7 @@ python standalone/calculate_chemical_potential_bounds.py \
 ### 5. 计算形成能与转变能级
 
 ```bash
-python standalone/formation_energy.py \
+python xgh2/formation_energy.py \
     -i result/correction_results.yaml \
     -o result/defect_results.yaml
 ```
@@ -380,20 +380,20 @@ python standalone/formation_energy.py \
 
 ```bash
 # 提取重组能
-python standalone/extract_reorganization_energy.py \
+python xgh2/extract_reorganization_energy.py \
     --method structural_relaxation \
     --defect v_O --charge 1 \
     -i q1/relax/RELAXSTEPS q1/S21/RELAXSTEPS \
     -o result/reorganization_energy.log
 
 # 计算 ΔQ
-python standalone/calculate_deltaQ_config.py \
+python xgh2/calculate_deltaQ_config.py \
     -c0 atom_config_0 \
     -cq atom_config_q \
     -o result/deltaQ.log
 
 # 绘制 CCD
-python standalone/plot_ccd.py \
+python xgh2/plot_ccd.py \
     -i result/reorganization_energy.log \
     --deltaQ 2.4 \
     --defect v_O --charge 1 \
@@ -413,7 +413,7 @@ generate_occ.py           ──→  occ.input / IN.OCC
       │
       ▼
 1_get_rho.sh → 2_coulomb_integral.sh → 3_get_results.sh
-  （或 pipeline/ 中的 batch_correction.py 批量处理）
+  （或 xgh1/ 中的 batch_correction.py 批量处理）
       │
       ▼
 correction.py collect  ──→  correction_results.yaml
@@ -449,7 +449,7 @@ extract_reorganization_energy.py  →  calculate_deltaQ_config.py  →  plot_ccd
 
 ## 使用提示
 
-- **推荐优先使用 `standalone/` 中的脚本**，通过 `-i`/`-o` 显式指定输入输出，适配不同项目结构
+- **推荐优先使用 `xgh2/` 中的脚本**，通过 `-i`/`-o` 显式指定输入输出，适配不同项目结构
 - 每个脚本都支持 `--help` 查看参数说明
-- 详细使用说明见 [`standalone/README.md`](standalone/README.md)
-- `pipeline/` 中的脚本适用于已有固定项目目录结构的情况
+- 详细使用说明见 [`xgh2/README.md`](xgh2/README.md)
+- `xgh1/` 中的脚本适用于已有固定项目目录结构的情况

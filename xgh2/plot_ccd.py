@@ -390,13 +390,13 @@ def parse_args() -> argparse.Namespace:
         epilog="""
 示例:
   # 只需要重组能log + 手动输入ΔQ；默认 ΔG=0，表示两态简并
-  python standalone/plot_ccd.py -i result/reorganization_energy.log --deltaQ 2.4 --defect 0_v_Si --charge 1 -o result/ccd/0_v_Si.png
+  python xgh2/plot_ccd.py -i result/reorganization_energy.log --deltaQ 2.4 --defect 0_v_Si --charge 1 -o result/ccd/0_v_Si.png
 
   # 非简并情况：额外手动指定 ΔG = E_q - E_0
-  python standalone/plot_ccd.py -i result/reorganization_energy.log --deltaQ 2.4 --defect 0_v_Si --charge 1 --deltaG 0.25
+  python xgh2/plot_ccd.py -i result/reorganization_energy.log --deltaQ 2.4 --defect 0_v_Si --charge 1 --deltaG 0.25
 
   # 兼容旧方式：从deltaQ log读取ΔQ
-  python standalone/plot_ccd.py -i result --deltaq-log result/deltaQ_scf_atom.log --defect 0_v_Si --charge 1
+  python xgh2/plot_ccd.py -i result --deltaq-log result/deltaQ_scf_atom.log --defect 0_v_Si --charge 1
         """,
     )
     parser.add_argument(

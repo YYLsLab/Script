@@ -1,6 +1,6 @@
-# standalone 使用说明
+# xgh2 使用说明
 
-`standalone/` 存放的是可迁移版本的后处理和辅助脚本。核心目标是通过 `-i/--input` 和 `-o/--output` 显式指定输入、输出，从而适配不同项目目录或服务器目录结构。
+`xgh2/` 存放的是可迁移版本的后处理和辅助脚本。核心目标是通过 `-i/--input` 和 `-o/--output` 显式指定输入、输出，从而适配不同项目目录或服务器目录结构。
 
 ## 基本原则
 
@@ -54,7 +54,7 @@
 使用 `generate_defect_input.py` 时，显式指定 bulk、中性态和带电态静态计算目录：
 
 ```powershell
-python standalone\generate_defect_input.py `
+python xgh2\generate_defect_input.py `
   -ibulk \path\to\bulk_static `
   -iq0 \path\to\neutral_static `
   -iq1 \path\to\positive_static `
@@ -73,7 +73,7 @@ python standalone\generate_defect_input.py `
 如果缺陷中心不能通过 bulk 和中性态 `atom.config` 自动识别，可手动指定：
 
 ```powershell
-python standalone\generate_defect_input.py `
+python xgh2\generate_defect_input.py `
   -ibulk \path\to\bulk_static `
   -iq0 \path\to\neutral_static `
   -iq1 \path\to\positive_static `
@@ -94,7 +94,7 @@ OUT.OCC1
 示例：
 
 ```powershell
-python standalone\generate_occ.py `
+python xgh2\generate_occ.py `
   -i \path\to\q_1\scf `
   -o \path\to\out\occ
 ```
@@ -120,7 +120,7 @@ IN.OCC_2
 推荐使用显式目录模式，不假设项目目录架构：
 
 ```powershell
-python standalone\correction.py collect `
+python xgh2\correction.py collect `
   -ibulk \path\to\bulk_static `
   -iq0 \path\to\neutral_static `
   -iq1 \path\to\positive_static `
@@ -142,7 +142,7 @@ python standalone\correction.py collect `
 旧的项目扫描模式仍保留兼容：
 
 ```powershell
-python standalone\correction.py collect `
+python xgh2\correction.py collect `
   -i \path\to\project `
   -o \path\to\out\correction_results.yaml
 ```
@@ -182,7 +182,7 @@ correction_results.yaml
 从项目根目录运行：
 
 ```powershell
-python standalone\calculate_chemical_potential_bounds.py `
+python xgh2\calculate_chemical_potential_bounds.py `
   -i \path\to\project `
   -o \path\to\out\chemical_potential_bounds.yaml `
   --target SiO2 `
@@ -193,7 +193,7 @@ python standalone\calculate_chemical_potential_bounds.py `
 也可以直接指定 `chemical` 目录：
 
 ```powershell
-python standalone\calculate_chemical_potential_bounds.py `
+python xgh2\calculate_chemical_potential_bounds.py `
   -i \path\to\project\chemical `
   -o \path\to\out\chemical_potential_bounds.yaml `
   --target SiO2 `
@@ -204,7 +204,7 @@ python standalone\calculate_chemical_potential_bounds.py `
 如果 bulk 主相文件不在默认位置：
 
 ```powershell
-python standalone\calculate_chemical_potential_bounds.py `
+python xgh2\calculate_chemical_potential_bounds.py `
   -i \path\to\project\chemical `
   -o \path\to\out\chemical_potential_bounds.yaml `
   --target SiO2 `
@@ -252,7 +252,7 @@ system:
 ### 4. 可选：重新生成形成能和热力学转变能级文件
 
 ```powershell
-python standalone\formation_energy.py `
+python xgh2\formation_energy.py `
   -i \path\to\out\correction_results.yaml `
   -o \path\to\out\defect_results.yaml `
   --project-root \path\to\project
@@ -318,7 +318,7 @@ python standalone\formation_energy.py `
 `structural_relaxation` 示例：
 
 ```powershell
-python standalone\extract_reorganization_energy.py `
+python xgh2\extract_reorganization_energy.py `
   --method structural_relaxation `
   --defect 0_v_Si `
   --charge 1 `
@@ -336,7 +336,7 @@ S(q->0) 的 RELAXSTEPS
 `fixed_charge_static` 示例：
 
 ```powershell
-python standalone\extract_reorganization_energy.py `
+python xgh2\extract_reorganization_energy.py `
   --method fixed_charge_static `
   --defect 0_v_Si `
   --charge 1 `
@@ -362,7 +362,7 @@ detail_reorg.log
 如果需要指定详细日志路径：
 
 ```powershell
-python standalone\extract_reorganization_energy.py `
+python xgh2\extract_reorganization_energy.py `
   --method fixed_charge_static `
   --defect 0_v_Si `
   --charge -1 `
@@ -400,7 +400,7 @@ defect charge S_0_to_q_eV S_q_to_0_eV
 默认输出为当前运行目录的 `dQ.log`：
 
 ```powershell
-python standalone\calculate_deltaQ_config.py `
+python xgh2\calculate_deltaQ_config.py `
   -i \path\to\q_0\scf\atom.config \path\to\q_1\scf\atom.config
 ```
 
@@ -424,7 +424,7 @@ rmsd_A
 如果需要 JSON：
 
 ```powershell
-python standalone\calculate_deltaQ_config.py `
+python xgh2\calculate_deltaQ_config.py `
   -i \path\to\q_0\scf\atom.config \path\to\q_1\scf\atom.config `
   -o \path\to\out\dQ.json
 ```
@@ -432,7 +432,7 @@ python standalone\calculate_deltaQ_config.py `
 可选方法：
 
 ```powershell
-python standalone\calculate_deltaQ_config.py `
+python xgh2\calculate_deltaQ_config.py `
   -i ref.atom.config target.atom.config `
   --method simple `
   -o dQ_simple.log
@@ -473,7 +473,7 @@ python standalone\calculate_deltaQ_config.py `
 两态简并 CCD：
 
 ```powershell
-python standalone\plot_ccd.py `
+python xgh2\plot_ccd.py `
   -i \path\to\result\reorganization_energy.log `
   --deltaQ 2.4 `
   --defect 0_v_Si `
@@ -491,7 +491,7 @@ python standalone\plot_ccd.py `
 非简并 CCD：
 
 ```powershell
-python standalone\plot_ccd.py `
+python xgh2\plot_ccd.py `
   -i \path\to\result\reorganization_energy.log `
   --deltaQ 2.4 `
   --defect 0_v_Si `
@@ -503,7 +503,7 @@ python standalone\plot_ccd.py `
 兼容旧的 `--delta-e` 写法：
 
 ```powershell
-python standalone\plot_ccd.py `
+python xgh2\plot_ccd.py `
   -i \path\to\result\reorganization_energy.log `
   --deltaQ 2.4 `
   --defect 0_v_Si `
@@ -515,7 +515,7 @@ python standalone\plot_ccd.py `
 兼容旧的 DeltaQ log 读取方式：
 
 ```powershell
-python standalone\plot_ccd.py `
+python xgh2\plot_ccd.py `
   -i \path\to\result `
   --deltaq-log \path\to\result\deltaQ_scf_atom.log `
   --defect 0_v_Si `
@@ -530,7 +530,7 @@ python standalone\plot_ccd.py `
 
 ## 当前脚本是否能读取本征缺陷能级
 
-**不能。当前 `standalone/` 中没有脚本会自动读取“本征缺陷能级”的能量值。**
+**不能。当前 `xgh2/` 中没有脚本会自动读取“本征缺陷能级”的能量值。**
 
 需要区分三类量：
 
@@ -560,7 +560,7 @@ python standalone\plot_ccd.py `
 如果 CCD 采用“本征能级 + 重组能”路线，目前需要你从对应计算输出中自行提取本征能级能量差，然后作为 `DeltaG` 传给：
 
 ```powershell
-python standalone\plot_ccd.py `
+python xgh2\plot_ccd.py `
   -i \path\to\result\reorganization_energy.log `
   --deltaQ 2.4 `
   --defect 0_v_Si `
@@ -624,13 +624,13 @@ calculate_deltaQ_config.py -> dQ.log 或 dQ.json
 如果脚本运行在与数据不同的目录，建议始终使用绝对路径。例如：
 
 ```powershell
-python \get_aligned_transition_level\standalone\formation_energy.py `
+python \get_aligned_transition_level\xgh2\formation_energy.py `
   -i \data\case01\result\correction_results.yaml `
   -o \data\case01\result\defect_results.yaml `
   --project-root \data\case01
 ```
 
-如果输入文件来自其他目录，但还需要项目配置或 bulk 信息，显式给 `--project-root` 或相关文件参数，避免脚本从当前 `standalone/` 附近误推断。
+如果输入文件来自其他目录，但还需要项目配置或 bulk 信息，显式给 `--project-root` 或相关文件参数，避免脚本从当前 `xgh2/` 附近误推断。
 
 ## 快速检查命令
 
@@ -638,24 +638,24 @@ python \get_aligned_transition_level\standalone\formation_energy.py `
 
 ```powershell
 python -m py_compile `
-  standalone\calculate_chemical_potential_bounds.py `
-  standalone\calculate_deltaQ_config.py `
-  standalone\correction.py `
-  standalone\extract_reorganization_energy.py `
-  standalone\formation_energy.py `
-  standalone\generate_defect_input.py `
-  standalone\generate_occ.py `
-  standalone\plot_ccd.py
+  xgh2\calculate_chemical_potential_bounds.py `
+  xgh2\calculate_deltaQ_config.py `
+  xgh2\correction.py `
+  xgh2\extract_reorganization_energy.py `
+  xgh2\formation_energy.py `
+  xgh2\generate_defect_input.py `
+  xgh2\generate_occ.py `
+  xgh2\plot_ccd.py
 ```
 
 查看单个脚本帮助：
 
 ```powershell
-python standalone\extract_reorganization_energy.py --help
-python standalone\plot_ccd.py --help
-python standalone\calculate_deltaQ_config.py --help
-python standalone\formation_energy.py --help
-python standalone\generate_occ.py --help
+python xgh2\extract_reorganization_energy.py --help
+python xgh2\plot_ccd.py --help
+python xgh2\calculate_deltaQ_config.py --help
+python xgh2\formation_energy.py --help
+python xgh2\generate_occ.py --help
 ```
 
 ## 注意事项

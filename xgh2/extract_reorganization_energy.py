@@ -365,10 +365,10 @@ def parse_args() -> argparse.Namespace:
         epilog="""
 示例:
   # structural_relaxation：两个 RELAXSTEPS
-  python standalone/extract_reorganization_energy.py --method structural_relaxation --defect 0_v_Si --charge 1 -i q1/relax/RELAXSTEPS q1/S21/RELAXSTEPS -o reorganization_energy.log
+  python xgh2/extract_reorganization_energy.py --method structural_relaxation --defect 0_v_Si --charge 1 -i q1/relax/RELAXSTEPS q1/S21/RELAXSTEPS -o reorganization_energy.log
 
   # fixed_charge_static：四个 REPORT
-  python standalone/extract_reorganization_energy.py --method fixed_charge_static --defect 0_v_Si --charge 1 -i q0/scf/REPORT q0/hse-meta-q1/REPORT q1/scf/REPORT q1/hse-meta-q0/REPORT -o reorganization_energy.log
+  python xgh2/extract_reorganization_energy.py --method fixed_charge_static --defect 0_v_Si --charge 1 -i q0/scf/REPORT q0/hse-meta-q1/REPORT q1/scf/REPORT q1/hse-meta-q0/REPORT -o reorganization_energy.log
         """,
     )
     parser.add_argument("--method", choices=["structural_relaxation", "fixed_charge_static"], required=True, help="重组能提取方法。")

@@ -396,8 +396,8 @@ def main():
         description="根据 OUT.KPT、OUT.OCC0 和 OUT.OCC1 生成 occ.input / IN.OCC。",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""示例:
-  python standalone/generate_occ.py -i /path/to/scf -o /path/to/out
-  python standalone/generate_occ.py -i /path/to/scf -o /path/to/occ.input
+  python xgh2/generate_occ.py -i /path/to/scf -o /path/to/out
+  python xgh2/generate_occ.py -i /path/to/scf -o /path/to/occ.input
 
 说明:
   - 无自旋时通常输出 occ.input 和 IN.OCC；有自旋时会输出 occ_spin*.input 和 IN.OCC_*。

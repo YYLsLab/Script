@@ -259,8 +259,8 @@ def main():
         description="根据 correction_results.yaml 计算形成能与转变能级。",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""示例:
-  python standalone/formation_energy.py -i result/correction_results.yaml -o result/defect_results.yaml
-  python standalone/formation_energy.py -i /path/to/correction_results.yaml -o /path/to/defect_results.yaml --project-root /path/to/project
+  python xgh2/formation_energy.py -i result/correction_results.yaml -o result/defect_results.yaml
+  python xgh2/formation_energy.py -i /path/to/correction_results.yaml -o /path/to/defect_results.yaml --project-root /path/to/project
 """,
     )
     parser.add_argument("-i", "--input", default=None, help="输入 correction_results.yaml。")

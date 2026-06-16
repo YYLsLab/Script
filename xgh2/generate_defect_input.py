@@ -3,10 +3,10 @@
 自动生成 defect.input 文件的脚本。
 
 用法:
-    python standalone/generate_defect_input.py -ibulk <bulk_dir> -iq0 <q0_dir> -iq1 <q1_dir>
+    python xgh2/generate_defect_input.py -ibulk <bulk_dir> -iq0 <q0_dir> -iq1 <q1_dir>
 
 示例:
-    python standalone/generate_defect_input.py -ibulk bulk/scf -iq0 neutral/scf -iq1 positive/scf
+    python xgh2/generate_defect_input.py -ibulk bulk/scf -iq0 neutral/scf -iq1 positive/scf
 
 脚本会:
   1. 通过比较 bulk 和缺陷超胞的 atom.config，自动找到缺陷位置（空位坐标）
@@ -167,9 +167,9 @@ def main():
         description="根据显式给定的 bulk、中性态和带电态静态计算目录生成 defect.input。",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""示例:
-  python standalone/generate_defect_input.py -ibulk /path/to/bulk/scf -iq0 /path/to/q0/scf -iq1 /path/to/q1/scf -o /tmp/defect_inputs
-  python standalone/generate_defect_input.py -ibulk /path/to/bulk/scf -iq0 /path/to/q0/scf -iqm1 /path/to/qm1/scf -o /path/to/defect.input
-  python standalone/generate_defect_input.py -ibulk /path/to/bulk/scf -iq0 /path/to/q0/scf --charge-dir 2=/path/to/q2/scf
+  python xgh2/generate_defect_input.py -ibulk /path/to/bulk/scf -iq0 /path/to/q0/scf -iq1 /path/to/q1/scf -o /tmp/defect_inputs
+  python xgh2/generate_defect_input.py -ibulk /path/to/bulk/scf -iq0 /path/to/q0/scf -iqm1 /path/to/qm1/scf -o /path/to/defect.input
+  python xgh2/generate_defect_input.py -ibulk /path/to/bulk/scf -iq0 /path/to/q0/scf --charge-dir 2=/path/to/q2/scf
 
 说明:
   - 不假设任何 q_*/scf 目录架构。

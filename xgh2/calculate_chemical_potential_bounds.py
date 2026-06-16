@@ -445,8 +445,8 @@ def parse_args() -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例:
-  python standalone/calculate_chemical_potential_bounds.py -i . -o result/chemical_potential_bounds.yaml --target SiO2
-  python standalone/calculate_chemical_potential_bounds.py -i chemical -o bounds.yaml --target SiO2 --ref Si=Si --ref O=O2
+  python xgh2/calculate_chemical_potential_bounds.py -i . -o result/chemical_potential_bounds.yaml --target SiO2
+  python xgh2/calculate_chemical_potential_bounds.py -i chemical -o bounds.yaml --target SiO2 --ref Si=Si --ref O=O2
         """,
     )
     parser.add_argument(

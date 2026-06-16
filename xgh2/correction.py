@@ -560,10 +560,10 @@ def main():
         description="生成 defect.input 或收集 ICIC/PA 修正结果。",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""示例:
-  python standalone/correction.py prepare -i /path/to/project -o /tmp/defect_inputs
-  python standalone/correction.py collect -i /path/to/project -o /path/to/correction_results.yaml
-  python standalone/correction.py collect -ibulk /path/to/bulk/scf -iq0 /path/to/q0/scf -iq1 /path/to/q1/scf -iqm1 /path/to/qm1/scf -o /path/to/correction_results.yaml
-  python standalone/correction.py all -i /path/to/project -o /path/to/correction_results.yaml
+  python xgh2/correction.py prepare -i /path/to/project -o /tmp/defect_inputs
+  python xgh2/correction.py collect -i /path/to/project -o /path/to/correction_results.yaml
+  python xgh2/correction.py collect -ibulk /path/to/bulk/scf -iq0 /path/to/q0/scf -iq1 /path/to/q1/scf -iqm1 /path/to/qm1/scf -o /path/to/correction_results.yaml
+  python xgh2/correction.py all -i /path/to/project -o /path/to/correction_results.yaml
 """,
     )
     parser.add_argument("mode", choices=["prepare", "collect", "all"], help="运行模式。")
